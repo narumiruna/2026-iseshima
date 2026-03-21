@@ -50,7 +50,7 @@
 - [x] 海鮮・伊勢海老店の詳細調査完了（2店舗: 割烹 大喜、虎丸）
 - [x] 赤福本店の調査完了
 - [x] カフェ・甘味処の調査（1店舗: 五十鈴川カフェ）
-- [x] すべての候補店舗のトリアージ完了（status: inbox なし、9店舗を researching に分類）
+- [x] すべての候補店舗のトリアージ完了（candidates.md に inbox / researching がない）
 - [x] top-places.md の完成（Top Picks 6店舗、Backups 1店舗）
 - [x] excluded.md の整理完了（9店舗を保留候補として記録）
 - [x] 予約戦略の策定（要予約店のリストアップ完了）

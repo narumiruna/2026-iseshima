@@ -83,7 +83,7 @@ Excluded places with documented reasons.
 
 ## Documentation Standards
 
-- **Language**: Primarily Japanese for content, English for structured fields
+- **Language**: Follow `AGENTS.md` / `references/overview.md` (English for operational rules; Japanese is OK for venue names and brief context)
 - **Dates**: ISO format (YYYY-MM-DD)
 - **Unknown information**: Use `unknown` rather than leaving blank
 - **Sources**: Always include actual URLs

@@ -40,7 +40,7 @@
 - [ ] 候補店舗の収集完了
 - [ ] [カテゴリ1]店の詳細調査完了
 - [ ] [カテゴリ2]店の詳細調査完了
-- [ ] すべての候補店舗のトリアージ完了（status: inbox なし）
+- [ ] すべての候補店舗のトリアージ完了（candidates.md に inbox / researching がない）
 - [ ] top-places.md の完成（Top Picks、Backups）
 - [ ] excluded.md の整理完了
 - [ ] 予約戦略の策定

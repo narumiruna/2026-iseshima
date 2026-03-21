@@ -13,7 +13,7 @@ This document tracks the research completion status for each city in the trip it
 
 A city is marked "✅ Completed" when ALL of the following are met:
 
-1. **All candidates triaged**: No `status: inbox` entries remain in candidates.md
+1. **All candidates triaged**: No `inbox` or `researching` statuses remain in candidates.md
 2. **No pending decisions**: excluded.md has no "TODO" or pending exclusion decisions
 3. **top-places.md finalized**: Contains Top Picks, Backups, Dining Strategy, and To-Do sections
 4. **overview.md checklist complete**: All checklist items marked `[x]`
@@ -25,11 +25,11 @@ A city is marked "✅ Completed" when ALL of the following are met:
 To verify completion for a city, run:
 
 ```bash
-# Check for inbox entries
-grep "status: inbox" gourmet/[city]/candidates.md
+# Check for inbox / researching entries (table cells)
+rg "\\|\\s*(inbox|researching)\\s*\\|" gourmet/[city]/candidates.md
 
 # Check for pending decisions
-grep -i "TODO\|pending" gourmet/[city]/excluded.md
+rg -i "TODO|pending" gourmet/[city]/excluded.md
 
 # Verify top-places.md sections exist
 grep -E "^## (Top Picks|Backups|Dining Strategy|To-Do)" gourmet/[city]/top-places.md

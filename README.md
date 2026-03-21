@@ -18,7 +18,8 @@
 
 ### 調査者・プランナー向け（詳細を確認したい）
 - **調査進捗の確認**: [PROGRESS.md](PROGRESS.md) - 調査状況の詳細トラッキング
-- **調査手順の理解**: [AGENTS.md](AGENTS.md) - 調査方法論とワークフロー（英語）
+- **調査手順の理解**: [AGENTS.md](AGENTS.md) - 必須ルール（英語）
+- **調査手順の詳細**: [Research Operations Manual](references/overview.md) - 手順書（英語）
 
 ---
 
@@ -93,7 +94,7 @@ gourmet/
 - ✅ **トレーサビリティ**: すべての推薦に情報源リンクを記載
 - ✅ **透明性**: 除外理由も含めすべて記録
 
-詳細な調査手順: [AGENTS.md](AGENTS.md)（英語）
+詳細な調査手順: [Research Operations Manual](references/overview.md)（英語）
 
 ---
 
@@ -107,4 +108,4 @@ gourmet/
 
 ### プロジェクト管理
 - **調査進捗トラッキング**: [PROGRESS.md](PROGRESS.md)
-- **調査手順・ガイドライン**: [AGENTS.md](AGENTS.md)（英語）
+- **調査手順・ガイドライン**: [AGENTS.md](AGENTS.md) / [Research Operations Manual](references/overview.md)（英語）
