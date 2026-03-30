@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>伊勢志摩 2026 旅遊指南</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:   #c0392b;
+      --primary-d: #96281b;
+      --accent:    #e67e22;
+      --bg:        #faf9f7;
+      --card-bg:   #ffffff;
+      --text:      #2c2c2c;
+      --muted:     #666;
+      --border:    #e0dcd5;
+      --radius:    10px;
+      --shadow:    0 2px 12px rgba(0,0,0,.08);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #922b21 60%, #784212 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+    }
+    header .subtitle { font-size: .95rem; opacity: .85; margin-top: .4rem; letter-spacing: .05em; }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: .06em; }
+    header .badge {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      padding: .3rem 1rem;
+      font-size: .85rem;
+      letter-spacing: .05em;
+    }
+
+    /* ── Tab Nav ── */
+    nav.tabs {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    nav.tabs button {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      padding: .85rem 1.4rem;
+      cursor: pointer;
+      font-size: .95rem;
+      font-family: inherit;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    nav.tabs button:hover { color: var(--primary); }
+    nav.tabs button.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* ── Content ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    main { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      border-left: 5px solid var(--primary);
+      padding-left: .75rem;
+      margin: 2.5rem 0 1.2rem;
+    }
+    .section-title:first-child { margin-top: 0; }
+
+    h3.sub { font-size: 1.1rem; color: var(--primary-d); margin: 1.5rem 0 .5rem; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border);
+    }
+    .card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .card p { color: var(--muted); font-size: .9rem; margin-top: .25rem; }
+
+    /* ── City grid ── */
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1.2rem;
+    }
+    .city-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .city-card-header {
+      background: var(--primary);
+      color: #fff;
+      padding: .9rem 1.2rem;
+    }
+    .city-card-header h3 { font-size: 1.1rem; }
+    .city-card-header span { font-size: .8rem; opacity: .85; }
+    .city-card-body { padding: 1rem 1.2rem; }
+    .city-card-body ul { list-style: none; padding: 0; }
+    .city-card-body ul li {
+      padding: .25rem 0;
+      font-size: .88rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .city-card-body ul li:last-child { border-bottom: none; }
+    .city-card-body ul li::before { content: "🍽 "; }
+
+    /* ── Overview stats ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .stat-box {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      text-align: center;
+      padding: 1.1rem .8rem;
+      box-shadow: var(--shadow);
+    }
+    .stat-box .num { font-size: 2rem; font-weight: 700; color: var(--primary); }
+    .stat-box .label { font-size: .82rem; color: var(--muted); margin-top: .15rem; }
+
+    /* ── Timeline ── */
+    .timeline { margin: 1rem 0; padding-left: 1.5rem; border-left: 3px solid var(--border); }
+    .timeline-item { position: relative; padding: .5rem 0 .5rem 1.2rem; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: .85rem;
+      width: 10px; height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-item strong { display: block; font-size: .92rem; }
+    .timeline-item span { font-size: .85rem; color: var(--muted); }
+
+    /* ── Food list ── */
+    .food-list { display: flex; flex-direction: column; gap: 1rem; }
+    .food-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .5rem .8rem;
+      align-items: start;
+    }
+    .food-card .name { font-weight: 700; font-size: 1rem; }
+    .food-card .score {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      padding: .2rem .55rem;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .food-card .score.backup {
+      background: var(--accent);
+    }
+    .food-card .meta { grid-column: 1 / -1; font-size: .85rem; color: var(--muted); }
+    .food-card .reason { grid-column: 1 / -1; font-size: .88rem; color: var(--text); margin-top: .1rem; }
+    .food-card .tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .4rem; }
+    .tag {
+      background: #f0ece7;
+      border-radius: 4px;
+      padding: .15rem .5rem;
+      font-size: .78rem;
+      color: var(--text);
+    }
+    .tag.reserve { background: #fde8e8; color: var(--primary); }
+
+    /* ── Attractions ── */
+    .attraction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1rem;
+    }
+    .attraction-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.2rem 1.4rem;
+    }
+    .attraction-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .attraction-card .city-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      padding: .1rem .5rem;
+      font-size: .75rem;
+      margin-bottom: .5rem;
+    }
+    .attraction-card p { font-size: .875rem; color: var(--muted); }
+
+    /* ── Map ── */
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1rem;
+    }
+    .map-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+    .map-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: .8rem; color: var(--primary); }
+    .map-card ul { list-style: none; padding: 0; }
+    .map-card ul li { margin-bottom: .5rem; font-size: .85rem; }
+    .map-card ul li a { display: flex; align-items: center; gap: .4rem; }
+    .map-card ul li a::before { content: "📍"; }
+    .map-embed-note {
+      background: #f0f4ff;
+      border: 1px solid #c5cff8;
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      font-size: .88rem;
+      color: #3a4a8a;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      nav.tabs button { padding: .7rem .9rem; font-size: .88rem; }
+      .food-card { grid-template-columns: 1fr; }
+      .food-card .score { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="subtitle">日本・三重県</div>
+  <h1>🌊 伊勢志摩 2026 旅遊指南</h1>
+  <div class="badge">📅 2026年9月25日 ～ 10月4日（10天）</div>
+</header>
+
+<!-- ══════════ TAB NAV ══════════ -->
+<nav class="tabs" role="tablist">
+  <button class="active" onclick="showTab('overview', event)"  role="tab">🗾 總覽</button>
+  <button             onclick="showTab('cities', event)"   role="tab">🏙 城市</button>
+  <button             onclick="showTab('food', event)"     role="tab">🍜 美食</button>
+  <button             onclick="showTab('sights', event)"   role="tab">⛩ 景點</button>
+  <button             onclick="showTab('map', event)"      role="tab">🗺 地圖</button>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════
+     TAB 1 : 總覽
+══════════════════════════════════════ -->
+<section id="overview" class="tab-content active">
+
+  <h2 class="section-title">旅程總覽</h2>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="num">10</div><div class="label">天數</div></div>
+    <div class="stat-box"><div class="num">4</div><div class="label">目的城市</div></div>
+    <div class="stat-box"><div class="num">32</div><div class="label">精選餐廳</div></div>
+    <div class="stat-box"><div class="num">25</div><div class="label">Top Pick 店家</div></div>
+  </div>
+
+  <div class="card">
+    <h4>✈️ 旅程資訊</h4>
+    <p>出發日期：2026年9月25日　｜　返程日期：2026年10月4日</p>
+    <p>機票・住宿均已預訂完成 ✅</p>
+  </div>
+
+  <h2 class="section-title">旅遊亮點</h2>
+
+  <div class="city-grid">
+    <div class="city-card">
+      <div class="city-card-header">
+        <h3>伊勢市</h3>
+        <span>神宮・おかげ横丁</span>
+      </div>
+      <div class="city-card-body">
+        <ul>
+          <li>伊勢神宮（內宮・外宮）</li>
+          <li>おかげ横丁 食べ歩き</li>
+          <li>赤福本店・朔日餅</li>
+          <li>伊勢うどん（山口屋・ふくすけ）</li>
+          <li>焼鳥 にかわ（百名店）</li>
+          <li>割烹 大喜（伊勢海老）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="city-card">
+      <div class="city-card-header">
+        <h3>松阪市</h3>
+        <span>松阪牛の故郷</span>
+      </div>
+      <div class="city-card-body">
+        <ul>
+          <li>松阪牛すき焼き（和田金）</li>
+          <li>松阪牛焼肉（一升びん）</li>
+          <li>松阪牛ステーキ（ノエル）</li>
+          <li>はちみつアイス（松治郎の舗）</li>
+          <li>超老舗和菓子（柳屋奉善）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="city-card">
+      <div class="city-card-header">
+        <h3>鳥羽市</h3>
+        <span>海鮮の聖地</span>
+      </div>
+      <div class="city-card-body">
+        <ul>
+          <li>伊勢海老蒸し料理（華月）</li>
+          <li>海女小屋体験（はまなみ）</li>
+          <li>てこね寿司（七越茶屋）</li>
+          <li>海鮮丼（○八食堂・駅直結）</li>
+          <li>洋菓子 LOBO＆ブランカ</li>
+          <li>鳥羽国際ホテル 絶景カフェ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="city-card">
+      <div class="city-card-header">
+        <h3>志摩市</h3>
+        <span>英虞湾・賢島</span>
+      </div>
+      <div class="city-card-body">
+        <ul>
+          <li>フレンチ（ラ・メール ザ クラシック）</li>
+          <li>うなぎ百名店（東山物産）</li>
+          <li>的矢かき（的矢かきテラス）</li>
+          <li>海鮮BBQ（中義水産）</li>
+          <li>英虞湾カフェ（賢島Cafe）</li>
+          <li>高級和食（和食 浜木綿）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">行程摘要</h2>
+  <div class="card">
+    <p>此次旅程以伊勢志摩地區為核心，深入探索三重縣的飲食文化。從伊勢神宮的精神聖地、到松阪牛的高級饗宴、鳥羽的新鮮海鮮、再到志摩英虞灣的壯麗景色，10天行程兼顧文化體驗與美食探索。</p>
+  </div>
+
+  <div class="card">
+    <h4>⚠️ 重要預約提醒</h4>
+    <p>以下店家需提前預約，建議出發前 1 個月以上完成預約：</p>
+    <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; color:var(--muted);">
+      <li>🔴 <strong>焼鳥 にかわ</strong>（伊勢市）—— 完全預約制，電話：050-5589-2663</li>
+      <li>🔴 <strong>ラ・メール ザ クラシック</strong>（志摩市）—— 完全預約制，早訂優先</li>
+      <li>🔴 <strong>和田金</strong>（松阪市）—— 必訂，電話或官網</li>
+      <li>🔴 <strong>割烹 大喜</strong>（伊勢市）—— 建議預約，電話：0596-28-0281</li>
+      <li>🔴 <strong>虎丸</strong>（伊勢市）—— 難訂，建議數個月前電話：0596-22-9298</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════
+     TAB 2 : 城市
+══════════════════════════════════════ -->
+<section id="cities" class="tab-content">
+
+  <!-- 伊勢市 -->
+  <h2 class="section-title">伊勢市（Ise City）</h2>
+  <div class="card">
+    <h4>城市特色</h4>
+    <p>三重縣最具代表性的觀光城市，以日本最高等級神社「伊勢神宮」聞名於世。內宮、外宮周邊的おかげ横丁聚集各式傳統老店，適合邊走邊吃。</p>
+  </div>
+  <div class="card">
+    <h4>代表性食文化</h4>
+    <ul style="padding-left:1.2rem; font-size:.9rem; line-height:2;">
+      <li><strong>伊勢うどん</strong>：極粗柔軟的麵條搭配濃郁醬油醬汁，為伊勢獨特的烏龍麵文化</li>
+      <li><strong>赤福餅</strong>：伊勢代表性和菓子，本店限定才有的新鮮口感</li>
+      <li><strong>伊勢海老</strong>：高級海鮮料理，需提前預約</li>
+      <li><strong>てこね寿司</strong>：以鰹魚或鮪魚漬製的鄉土壽司</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>主要區域</h4>
+    <ul style="padding-left:1.2rem; font-size:.88rem; line-height:2; color:var(--muted);">
+      <li>おかげ横丁・內宮前 —— 傳統食べ歩き天堂</li>
+      <li>外宮前 —— 現代法式料理等多元選擇</li>
+      <li>伊勢市駅周邊 —— 在地老字號烏龍麵店</li>
+    </ul>
+  </div>
+
+  <!-- 松阪市 -->
+  <h2 class="section-title">松阪市（Matsusaka City）</h2>
+  <div class="card">
+    <h4>城市特色</h4>
+    <p>日本三大和牛之一「松阪牛」的故鄉。松阪牛以美麗的霜降紋路、入口即化的油脂香氣聞名全球，是本次旅程美食體驗的核心之一。</p>
+  </div>
+  <div class="card">
+    <h4>代表性食文化</h4>
+    <ul style="padding-left:1.2rem; font-size:.9rem; line-height:2;">
+      <li><strong>松阪牛すき焼き</strong>：傳統鍋物，老舖風情，代表店：和田金（明治11年創業）</li>
+      <li><strong>松阪牛焼肉</strong>：一頭買入，提供稀有部位，代表店：一升びん</li>
+      <li><strong>松阪牛ステーキ</strong>：精肉直營，附產地證明，代表店：ビーフクラブ ノエル</li>
+      <li><strong>はちみつスイーツ</strong>：百年養蜂場直營，代表店：松治郎の舗</li>
+      <li><strong>老舖和菓子</strong>：創業於1575年，代表店：柳屋奉善</li>
+    </ul>
+  </div>
+
+  <!-- 鳥羽市 -->
+  <h2 class="section-title">鳥羽市（Toba City）</h2>
+  <div class="card">
+    <h4>城市特色</h4>
+    <p>三重縣最具代表性的海鮮聖地，緊鄰大海，提供極為新鮮的各式海產。同時也是「海女」文化的重要據點，可體驗海女小屋的炭火燒烤海鮮。</p>
+  </div>
+  <div class="card">
+    <h4>代表性食文化</h4>
+    <ul style="padding-left:1.2rem; font-size:.9rem; line-height:2;">
+      <li><strong>伊勢海老</strong>：全年供應，蒸煮、生食等多種吃法</li>
+      <li><strong>てこね寿司</strong>：鄉土壽司代表</li>
+      <li><strong>海女小屋體驗</strong>：炭火燒烤伊勢海老、蛤蜊等海產，體驗型用餐</li>
+      <li><strong>浦村牡蠣</strong>：地方品牌牡蠣，冬季（11～3月）為旺季</li>
+    </ul>
+  </div>
+
+  <!-- 志摩市 -->
+  <h2 class="section-title">志摩市（Shima City）</h2>
+  <div class="card">
+    <h4>城市特色</h4>
+    <p>伊勢志摩國立公園所在地，的矢灣、英虞灣等里亞斯式海岸形成壯麗景觀。2016年G7伊勢志摩峰會在此舉行，賢島為近鐵志摩線終點站。</p>
+  </div>
+  <div class="card">
+    <h4>代表性食文化</h4>
+    <ul style="padding-left:1.2rem; font-size:.9rem; line-height:2;">
+      <li><strong>的矢かき</strong>：志摩的矢灣名產品牌牡蠣，夏季岩牡蠣9月可能仍可享用</li>
+      <li><strong>伊勢海老</strong>：秋季正是旺季，多數餐廳供應</li>
+      <li><strong>フレンチ（法式料理）</strong>：G7峰會晚宴場地，代表店：ラ・メール ザ クラシック</li>
+      <li><strong>うなぎ（鰻魚）</strong>：備長炭關西風地燒，代表店：東山物産（百名店）</li>
+      <li><strong>真珠・鮑（鮑魚）</strong>：志摩為真珠養殖名地，鮑魚料理也是一絕</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════
+     TAB 3 : 美食
+══════════════════════════════════════ -->
+<section id="food" class="tab-content">
+
+  <!-- ─── 伊勢市 ─── -->
+  <h2 class="section-title">伊勢市 精選餐廳</h2>
+
+  <div class="food-list">
+
+    <div class="food-card">
+      <div class="name">赤福本店</div>
+      <div class="score">43分</div>
+      <div class="meta">🏷 和菓子・甘味処　📍 內宮前・おかげ横丁　💴 ~¥1,000</div>
+      <div class="reason">伊勢代表和菓子。本店限定現做的赤福餅口感柔軟，五十鈴川絕景相伴，早上5時即開業，是參拜前最佳早餐選擇。每月1日有「朔日餅」（9月：萩の餅、10月：栗餅）。</div>
+      <div class="tags">
+        <span class="tag">不需預約</span><span class="tag">全年無休</span><span class="tag">早上5時開業</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">焼鳥 にかわ</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 焼鳥　📍 伊勢市駅步行8分　💴 ¥15,000～¥20,000</div>
+      <div class="reason">食べログ4.00，焼鳥百名店連續3年入選（2023–2025）。完全預約制，おまかせコース專門，以備長炭精心炙烤珍稀雞肉，堪稱至高體驗。18:00統一入席，遲到嚴禁。</div>
+      <div class="tags">
+        <span class="tag reserve">必須預約</span><span class="tag">百名店</span><span class="tag">週一休</span>
+        <span class="tag">電話：050-5589-2663</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">山口屋</div>
+      <div class="score">41分</div>
+      <div class="meta">🏷 伊勢うどん　📍 伊勢市駅步行3分　💴 ~¥1,000未満</div>
+      <div class="reason">昭和初期創業老舖，米其林指南掲載實力店。自製麵條極粗，搭配濃郁醬油醬汁，是伊勢烏龍麵的最高水準代表。</div>
+      <div class="tags">
+        <span class="tag">米其林掲載</span><span class="tag">週四休</span><span class="tag">駐車場3台</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">五十鈴川カフェ</div>
+      <div class="score">40分</div>
+      <div class="meta">🏷 カフェ　📍 おかげ横丁內　💴 ~¥1,000</div>
+      <div class="reason">俯瞰五十鈴川的絕佳位置。使用焙煎後48小時內新鮮咖啡豆以法蘭絨手沖製作的咖啡，搭配甜點，是參拜後放鬆的最佳去處。</div>
+      <div class="tags">
+        <span class="tag">不需預約</span><span class="tag">無休</span><span class="tag">27～30席</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">割烹 大喜</div>
+      <div class="score">39分</div>
+      <div class="meta">🏷 海鮮割烹（伊勢海老）　📍 宇治山田駅步行1分　💴 午餐¥2,000～3,000・晚餐¥6,000～8,000</div>
+      <div class="reason">皇室・神宮司廳御用達老舖割烹。伊勢海老活造りはじめ，伊勢志摩當季海鮮盡享。夏季（6～8月）伊勢海老可能缺貨，需事先確認。</div>
+      <div class="tags">
+        <span class="tag reserve">建議預約</span><span class="tag">週四休</span><span class="tag">駐車場40台</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">ふくすけ</div>
+      <div class="score">39分</div>
+      <div class="meta">🏷 伊勢うどん　📍 おかげ横丁內　💴 ¥650～</div>
+      <div class="reason">おかげ横丁內的伊勢烏龍麵定番店，粗軟麵條與濃醬汁，與內宮參拜行程完美搭配，座敷席可帶嬰兒車入內。</div>
+      <div class="tags">
+        <span class="tag">不需預約</span><span class="tag">全年無休</span><span class="tag">親子友善</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">虎丸</div>
+      <div class="score">37分</div>
+      <div class="meta">🏷 海鮮居酒屋（天然魚専門）　📍 伊勢市駅步行7分　💴 ¥5,000～¥7,000</div>
+      <div class="reason">食べログ3.69，居酒屋百名店（2022・2024・2025年入選）。僅使用天然魚，伊勢海老・黒鮑等珍稀食材，改裝自古倉庫的獨特空間氛圍。預約非常難取，建議數月前電話預約。</div>
+      <div class="tags">
+        <span class="tag reserve">必須預約（難）</span><span class="tag">百名店</span><span class="tag">電話：0596-22-9298</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── 松阪市 ─── -->
+  <h2 class="section-title">松阪市 精選餐廳</h2>
+
+  <div class="food-list">
+
+    <div class="food-card">
+      <div class="name">松治郎の舗 松阪本店</div>
+      <div class="score">46分</div>
+      <div class="meta">🏷 はちみつスイーツ・アイス　📍 松阪市中町　💴 ¥400～¥640</div>
+      <div class="reason">2023年アイス・ジェラート百名店入選。大正創業養蜂場直營老舖，招牌はちみつ最中アイス（5種類），使用三重縣產牛乳，價格超實惠。</div>
+      <div class="tags">
+        <span class="tag">百名店</span><span class="tag">不需預約</span><span class="tag">松阪駅近</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">柳屋奉善</div>
+      <div class="score">44分</div>
+      <div class="meta">🏷 和菓子　📍 松阪市內　💴 伴手禮為主</div>
+      <div class="reason">1575年創業（安土桃山時代）超老舖和菓子店。招牌「老伴（おいのとも）」是松阪銘菓——以最中皮包裹羊羹再淋上糖蜜，炙烤後更加香脆。附設喫茶空間，也是絕佳伴手禮選擇。</div>
+      <div class="tags">
+        <span class="tag">450年老舖</span><span class="tag">不需預約</span><span class="tag">伴手禮推薦</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">一升びん 本店</div>
+      <div class="score">43分</div>
+      <div class="meta">🏷 焼肉　📍 松阪市南町　💴 ¥3,000～¥5,000</div>
+      <div class="reason">2025年焼肉百名店入選。A4・A5等級松阪牛從3,000多元起，CP值極高。一頭買入可提供稀有部位，自製味噌醬汁絕品，同時深受在地人及觀光客喜愛。曾經造訪。</div>
+      <div class="tags">
+        <span class="tag">百名店</span><span class="tag reserve">建議預約</span><span class="tag">駐車場80台</span>
+        <span class="tag">曾造訪</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">ビーフクラブ ノエル</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 ステーキ・鉄板焼き　📍 松阪市京町　💴 午餐¥4,500～・晚餐¥8,000～¥15,000</div>
+      <div class="reason">2025年ステーキ・鉄板焼き百名店入選。精肉店丸幸精肉店直營，附松阪牛產地證明，午餐套餐CP值高，適合紀念日用餐。</div>
+      <div class="tags">
+        <span class="tag">百名店</span><span class="tag reserve">必須預約</span><span class="tag">附產地證明</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">和田金</div>
+      <div class="score">40分</div>
+      <div class="meta">🏷 すき焼き　📍 松阪市中町　💴 ¥15,000～¥20,000</div>
+      <div class="reason">明治11年創業，松阪牛元祖名店。食べログセレクション・百名店常客。A5等級最高品質松阪牛在包廂內享用，仲居さん貼心服務與傳統烹調，特別的日子首選。曾經造訪。</div>
+      <div class="tags">
+        <span class="tag reserve">必須預約</span><span class="tag">百名店</span><span class="tag">曾造訪</span>
+        <span class="tag">第4週二休</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── 鳥羽市 ─── -->
+  <h2 class="section-title">鳥羽市 精選餐廳</h2>
+
+  <div class="food-list">
+
+    <div class="food-card">
+      <div class="name">LOBO＆ブランカ</div>
+      <div class="score">44分</div>
+      <div class="meta">🏷 洋菓子・カフェ　📍 鳥羽市內　💴 甜點・伴手禮</div>
+      <div class="reason">シェル・レーヌ曾在G7峰會中提供，榮獲全國菓子大博覧会名誉総裁賞。LOBO咖啡廳也併設其中，是鳥羽最佳伴手禮選擇。</div>
+      <div class="tags">
+        <span class="tag">G7峰會供應</span><span class="tag">伴手禮推薦</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">伊勢海老 海鮮蒸し料理 華月</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 伊勢海老・海鮮蒸し　📍 鳥羽市大明東町　💴 午餐¥4,950～・晚餐¥12,000～</div>
+      <div class="reason">伊勢海老専門店，蒸煮料理最大程度引出食材鮮甜。高評價口碑眾多，提供免費接駁車（需預約）。</div>
+      <div class="tags">
+        <span class="tag reserve">建議預約</span><span class="tag">免費接駁</span><span class="tag">不定休</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">○八食堂（まるはちしょくどう）</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 海鮮丼・定食　📍 鳥羽駅2F（車站直通）　💴 平實</div>
+      <div class="reason">車站2樓直通，超便利！新鮮海鮮丼、刺身定食、エビフライ定食皆受好評，CP值高。僅支援現金或PayPay，不接受刷卡。</div>
+      <div class="tags">
+        <span class="tag">車站直通</span><span class="tag">現金・PayPay</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">鳥羽国際ホテル カフェ＆ラウンジ</div>
+      <div class="score">41分</div>
+      <div class="meta">🏷 カフェ・スイーツ　📍 鳥羽灣　💴 中高</div>
+      <div class="reason">招牌起司蛋糕擁有半世紀以上傳承，眺望鳥羽灣的絕景，下午茶也廣受好評。全年無休，建議預約下午茶時段。</div>
+      <div class="tags">
+        <span class="tag reserve">下午茶建議預約</span><span class="tag">全年無休</span><span class="tag">鳥羽灣絕景</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">七越茶屋</div>
+      <div class="score">41分</div>
+      <div class="meta">🏷 てこね寿司・伊勢うどん　📍 鳥羽市內　💴 平實</div>
+      <div class="reason">招牌てこね寿司絕品，與伊勢烏龍麵組合可一次品嚐兩種鄉土料理。老字號滋味，CP值高。</div>
+      <div class="tags">
+        <span class="tag">鄉土料理</span><span class="tag">駐車場</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">四季の海鮮 魚々味（ととみ）</div>
+      <div class="score">40分</div>
+      <div class="meta">🏷 海鮮料理　📍 鳥羽市堅神町（潮騒の駅內）　💴 平實</div>
+      <div class="reason">漁協直營，鮮度極佳，量多實惠，在地人也愛去。平日可電話預約，週末及旺季不接受預約，注意週二・週三公休。</div>
+      <div class="tags">
+        <span class="tag">漁協直營</span><span class="tag">週二・三休</span><span class="tag">駐車場30台</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">海女小屋 鳥羽 はまなみ</div>
+      <div class="score">38分</div>
+      <div class="meta">🏷 海鮮・體驗型　📍 鳥羽駅前（步行圈）　💴 平實</div>
+      <div class="reason">活魚從生け簀直選，可選擇烹調方式，超實惠。不接受預約（先到先得），週四・五休，假日開門前就會排隊，建議早到。僅收現金。</div>
+      <div class="tags">
+        <span class="tag">不接受預約</span><span class="tag">現金only</span><span class="tag">週四・五休</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── 志摩市 ─── -->
+  <h2 class="section-title">志摩市 精選餐廳</h2>
+
+  <div class="food-list">
+
+    <div class="food-card">
+      <div class="name">ラ・メール ザ クラシック</div>
+      <div class="score">43分</div>
+      <div class="meta">🏷 フレンチ（高級）　📍 志摩観光ホテル ザ クラシック（賢島駅步行5分）　💴 午餐¥10,000-15,000・晚餐¥20,000-40,000</div>
+      <div class="reason">G7伊勢志摩峰會官方晚宴會場。食べログ Award 2025銅獎，フレンチ百名店。以伊勢海老奶油濃湯、黑鮑牛排、松阪牛等三重高級食材打造「海之幸法式料理」名門。英虞灣絕景，非日常體驗。智慧休閒裝扮必須（禁T恤・短褲・涼鞋）。</div>
+      <div class="tags">
+        <span class="tag reserve">完全預約制</span><span class="tag">G7峰會場地</span><span class="tag">百名店</span>
+        <span class="tag">著裝要求</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">炭火焼うなぎ 東山物産</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 うなぎ専門店　📍 鵜方駅步行3分　💴 ¥3,000～¥4,500</div>
+      <div class="reason">2024年うなぎ百名店入選。備長炭關西風地燒（外脆內嫩），縣內超人氣店，回頭客眾多。無法預約座位，建議電話預約取餐（0599-43-0539），賣完即結束營業。</div>
+      <div class="tags">
+        <span class="tag">百名店</span><span class="tag reserve">取餐預約推薦</span><span class="tag">週二休</span>
+        <span class="tag">電話：0599-43-0539</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">賢島Cafe</div>
+      <div class="score">42分</div>
+      <div class="meta">🏷 カフェ・スイーツ　📍 賢島駅前步行2分　💴 ~¥1,500</div>
+      <div class="reason">英虞灣絕景露台座位，供應正宗義式濃縮咖啡與Blue Seal冰淇淋。賢島駅步行2分，超方便，可攜寵物。</div>
+      <div class="tags">
+        <span class="tag">英虞灣絕景</span><span class="tag">寵物可帶</span><span class="tag">車站2分</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">和食 浜木綿（はまゆう）</div>
+      <div class="score">41分</div>
+      <div class="meta">🏷 懐石・伊勢海老・鮑　📍 志摩観光ホテル　💴 晚餐¥20,000-30,000</div>
+      <div class="reason">高級日本料理，使用在地品牌食材（伊勢海老、鮑魚、松阪牛），英虞灣美景，細心服務。完全預約制，小學生以上才可入場，著裝要求（智慧休閒）。</div>
+      <div class="tags">
+        <span class="tag reserve">完全預約制</span><span class="tag">著裝要求</span><span class="tag">小學生以上</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">的矢かきテラス</div>
+      <div class="score">40分</div>
+      <div class="meta">🏷 的矢かき料理　📍 的矢灣　💴 平實</div>
+      <div class="reason">佐藤養殖場直營，9月岩牡蠣正當時（6～9月旬），浮台席絕景，CP值高。9月份造訪正好是岩牡蠣的旺季尾聲。週二休。</div>
+      <div class="tags">
+        <span class="tag reserve">浮台席建議預約</span><span class="tag">週二休</span><span class="tag">10:00-15:00</span>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <div class="name">中義水産</div>
+      <div class="score">40分</div>
+      <div class="meta">🏷 海鮮BBQ　📍 賢島駅步行即到　💴 平實</div>
+      <div class="reason">岩牡蠣超讚，海鮮BBQ，CP值佳，賢島駅步行即達。戶外露台（無空調），僅收現金，請注意生牡蠣衛生。</div>
+      <div class="tags">
+        <span class="tag">車站即到</span><span class="tag">現金only</span><span class="tag">戶外席</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════
+     TAB 4 : 景點
+══════════════════════════════════════ -->
+<section id="sights" class="tab-content">
+
+  <h2 class="section-title">伊勢市 主要景點</h2>
+  <div class="attraction-grid">
+
+    <div class="attraction-card">
+      <span class="city-tag">伊勢市</span>
+      <h4>⛩ 伊勢神宮 內宮（皇大神宮）</h4>
+      <p>日本最高等級神社，供奉天照大神。約2000年歷史，每20年一次式年遷宮。宇治橋入口氣勢非凡，五十鈴川御手洗場清澈見底。建議早晨參拜，人潮較少且空氣清新。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">伊勢市</span>
+      <h4>⛩ 伊勢神宮 外宮（豊受大神宮）</h4>
+      <p>供奉食物、農業、工業之神豊受大神，是伊勢神宮參拜的起點（傳統上先外宮後內宮）。外宮前近年發展成美食街，可找到法式料理等多元選擇。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">伊勢市</span>
+      <h4>🏘 おかげ横丁</h4>
+      <p>內宮旁的傳統商店街，重現江戶時代風情的街道。集合伊勢烏龍麵、赤福餅、てこね寿司、コロッケ等各式名物，適合一邊散步一邊品嚐在地美食，是伊勢旅遊絕對不可錯過的必訪地點。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">伊勢市</span>
+      <h4>🌊 夫婦岩（二見興玉神社）</h4>
+      <p>位於二見町海岸的著名岩石景觀，以粗繩連結的「夫婦岩」是伊勢志摩的代表性景象。日出時刻的剪影尤為壯觀，附近有二見興玉神社，青蛙（蛙）為當地吉祥物。</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">松阪市 主要景點</h2>
+  <div class="attraction-grid">
+
+    <div class="attraction-card">
+      <span class="city-tag">松阪市</span>
+      <h4>🏯 松坂城跡</h4>
+      <p>蒲生氏鄉於1588年建造的城郭遺址，現為松阪公園。雖然天守已不存在，但石牆保存完整氣勢雄偉。秋季銀杏和楓葉特別美麗，附近有松阪市立歷史民俗資料館。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">松阪市</span>
+      <h4>🏘 松坂商人の町並み</h4>
+      <p>江戶時代松阪商人繁榮時期留下的老街建築群，三井家（三井財閥發源地）等古宅保存完好。可體驗江戶時代的商業城市風貌，感受松阪牛背後的歷史文化底蘊。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">松阪市</span>
+      <h4>🌿 本居宣長記念館</h4>
+      <p>紀念日本國學大師本居宣長（1730–1801）的紀念館，他是《古事記傳》的著者，研究日本古典文學的先驅。松阪市出身，在此可深入了解江戶時代的學術文化。</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">鳥羽市 主要景點</h2>
+  <div class="attraction-grid">
+
+    <div class="attraction-card">
+      <span class="city-tag">鳥羽市</span>
+      <h4>🐬 鳥羽水族館</h4>
+      <p>日本最大級水族館，飼育生物種類超過1,200種。儒艮（海牛）是日本唯一的飼育設施，「海女と海の動物たち」展區也很有看頭。適合家庭旅遊，建議安排半天至一天。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">鳥羽市</span>
+      <h4>🚢 鳥羽灣周遊・島めぐり</h4>
+      <p>從鳥羽駅旁出發的觀光船，可環遊鳥羽灣美景，前往神島、答志島等離島。海上眺望鳥羽市的全景十分壯觀，若時間充裕可安排離島一日遊。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">鳥羽市</span>
+      <h4>🦪 海女文化（あまカルチャー）</h4>
+      <p>鳥羽・志摩地區是日本海女文化的重要據點。可在相差海女文化館深入了解海女歷史，或前往海女小屋體驗現場品嚐海女捕撈的海鮮。2015年海女文化已登錄為日本重要無形民俗文化財。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">鳥羽市</span>
+      <h4>🌊 パールロード</h4>
+      <p>連接鳥羽市與志摩市的觀光道路，沿途可欣賞太平洋與英虞灣的壯麗海景。鳥羽展望台是俯瞰鳥羽灣島嶼群的絕佳視點，開車遊覽尤為推薦。</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">志摩市 主要景點</h2>
+  <div class="attraction-grid">
+
+    <div class="attraction-card">
+      <span class="city-tag">志摩市</span>
+      <h4>🌊 英虞湾（あごわん）</h4>
+      <p>以複雜的里亞斯式海岸聞名的美麗海灣，擁有大小60個以上的島嶼點綴其中。真珠養殖業的發源地，橫山展望台是俯瞰英虞灣全景的最佳地點，日落時份尤為絕美。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">志摩市</span>
+      <h4>🚉 賢島（かしこじま）</h4>
+      <p>近鐵志摩線終點站，是英虞灣觀光的據點。2016年G7伊勢志摩峰會的舉辦地，以賢島港為起點可搭乘英虞灣遊覧船，欣賞真珠養殖浮台與小島景色。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">志摩市</span>
+      <h4>🦪 的矢湾（まとやわん）</h4>
+      <p>以「的矢かき」聞名的清澈海灣。牡蠣養殖場直營店散布周邊，是品嚐新鮮牡蠣的最佳地點。9月造訪正好可以享用夏季岩牡蠣的最後尾聲，11月起進入冬季牡蠣旺季。</p>
+    </div>
+
+    <div class="attraction-card">
+      <span class="city-tag">志摩市</span>
+      <h4>🎪 志摩スペイン村（パルケエスパーニャ）</h4>
+      <p>以西班牙為主題的大型主題樂園，涵蓋樂園、飯店、溫泉等設施。對文化或娛樂有興趣的旅客可安排參訪，但距離賢島約20分鐘車程，需預留足夠時間。</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════
+     TAB 5 : 地圖
+══════════════════════════════════════ -->
+<section id="map" class="tab-content">
+
+  <div class="map-embed-note">
+    💡 點選下方連結可在 Google Maps 中查看各地點的確切位置與路線規劃。
+  </div>
+
+  <h2 class="section-title">伊勢市 地圖連結</h2>
+  <div class="map-grid">
+
+    <div class="map-card">
+      <h4>⛩ 神社・寺廟</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=伊勢神宮+内宮+伊勢市" target="_blank" rel="noopener">伊勢神宮 內宮</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=伊勢神宮+外宮+伊勢市" target="_blank" rel="noopener">伊勢神宮 外宮</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=二見興玉神社+伊勢市" target="_blank" rel="noopener">二見興玉神社（夫婦岩）</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🍜 美食・甘味</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=赤福本店+伊勢市" target="_blank" rel="noopener">赤福本店</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=山口屋+伊勢うどん+伊勢市" target="_blank" rel="noopener">山口屋（伊勢うどん）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=ふくすけ+おかげ横丁+伊勢市" target="_blank" rel="noopener">ふくすけ（おかげ横丁）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=焼鳥+にかわ+伊勢市" target="_blank" rel="noopener">焼鳥 にかわ</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=割烹+大喜+伊勢市" target="_blank" rel="noopener">割烹 大喜</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=五十鈴川カフェ+おかげ横丁+伊勢市" target="_blank" rel="noopener">五十鈴川カフェ</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=虎丸+伊勢市" target="_blank" rel="noopener">虎丸（海鮮居酒屋）</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🏘 觀光地區</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=おかげ横丁+伊勢市" target="_blank" rel="noopener">おかげ横丁</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=伊勢市駅" target="_blank" rel="noopener">伊勢市駅</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=宇治山田駅+伊勢市" target="_blank" rel="noopener">宇治山田駅</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">松阪市 地圖連結</h2>
+  <div class="map-grid">
+
+    <div class="map-card">
+      <h4>🥩 松阪牛レストラン</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=和田金+松阪市" target="_blank" rel="noopener">和田金（すき焼き）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=一升びん本店+松阪市" target="_blank" rel="noopener">一升びん 本店（焼肉）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=ビーフクラブノエル+松阪市" target="_blank" rel="noopener">ビーフクラブ ノエル（ステーキ）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=牛銀本店+松阪市" target="_blank" rel="noopener">牛銀本店（すき焼き）</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🍡 スイーツ・和菓子</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=松治郎の舗松阪本店+松阪市" target="_blank" rel="noopener">松治郎の舗（はちみつアイス）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=柳屋奉善+松阪市" target="_blank" rel="noopener">柳屋奉善（老伴・和菓子）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=パティスリーキュルミネ+松阪市" target="_blank" rel="noopener">パティスリー・キュルミネ</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🏯 觀光景點</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=松坂城跡+松阪市" target="_blank" rel="noopener">松坂城跡・松阪公園</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=本居宣長記念館+松阪市" target="_blank" rel="noopener">本居宣長記念館</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=松阪駅" target="_blank" rel="noopener">松阪駅</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">鳥羽市 地圖連結</h2>
+  <div class="map-grid">
+
+    <div class="map-card">
+      <h4>🦞 海鮮レストラン</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=伊勢海老+海鮮蒸し料理+華月+鳥羽市" target="_blank" rel="noopener">海鮮蒸し料理 華月</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=四季の海鮮+魚々味+鳥羽市" target="_blank" rel="noopener">四季の海鮮 魚々味</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=海女小屋+鳥羽+はまなみ" target="_blank" rel="noopener">海女小屋 はまなみ</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=○八食堂+鳥羽駅" target="_blank" rel="noopener">○八食堂（鳥羽駅2F）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=七越茶屋+鳥羽市" target="_blank" rel="noopener">七越茶屋（てこね寿司）</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>☕ カフェ・スイーツ</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=LOBO+ブランカ+鳥羽市" target="_blank" rel="noopener">LOBO＆ブランカ</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=鳥羽国際ホテル+カフェ" target="_blank" rel="noopener">鳥羽国際ホテル カフェ</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🌊 觀光景點</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=鳥羽水族館" target="_blank" rel="noopener">鳥羽水族館</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=鳥羽展望台" target="_blank" rel="noopener">鳥羽展望台</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=鳥羽駅" target="_blank" rel="noopener">鳥羽駅</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">志摩市 地圖連結</h2>
+  <div class="map-grid">
+
+    <div class="map-card">
+      <h4>🍽 餐廳</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=ラ・メール+ザ+クラシック+志摩観光ホテル" target="_blank" rel="noopener">ラ・メール ザ クラシック</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=炭火焼うなぎ+東山物産+志摩市" target="_blank" rel="noopener">炭火焼うなぎ 東山物産</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=的矢かきテラス+志摩市" target="_blank" rel="noopener">的矢かきテラス</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=中義水産+志摩市" target="_blank" rel="noopener">中義水産（海鮮BBQ）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=和食+浜木綿+志摩観光ホテル" target="_blank" rel="noopener">和食 浜木綿</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>☕ カフェ</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=賢島Cafe" target="_blank" rel="noopener">賢島Cafe</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=いかだ荘+山上+志摩市" target="_blank" rel="noopener">いかだ荘 山上</a></li>
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <h4>🌊 觀光景點</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=賢島駅+志摩市" target="_blank" rel="noopener">賢島駅</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=横山展望台+志摩市" target="_blank" rel="noopener">横山展望台（英虞灣全景）</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=的矢湾+志摩市" target="_blank" rel="noopener">的矢湾</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=志摩スペイン村" target="_blank" rel="noopener">志摩スペイン村</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>🌊 伊勢志摩 2026 旅遊指南　｜　旅行日期：2026年9月25日 ～ 10月4日</p>
+  <p style="margin-top:.4rem;">資料來源：食べログ・Google Maps・Michelin Guide・各店官方資訊</p>
+</footer>
+
+<script>
+  function showTab(id, event) {
+    document.querySelectorAll('.tab-content').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    document.querySelectorAll('nav.tabs button').forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
