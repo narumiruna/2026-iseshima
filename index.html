@@ -78,6 +78,7 @@
       z-index: 100;
       background: rgba(255,255,255,.95);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 2px solid var(--border);
       display: flex;
       justify-content: center;
@@ -1179,7 +1180,7 @@
 </footer>
 
 <!-- ══════════ Scroll-to-top ══════════ -->
-<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂部">↑</button>
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
 
 <script>
   function showTab(id, event) {
