@@ -1,0 +1,1 @@
+- type: check | item: Removed VitePress dependency/scripts and added TECH_STACK.md without violating AGENTS constraints.
