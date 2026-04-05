@@ -397,6 +397,64 @@
       box-shadow: 0 6px 20px rgba(192,57,43,.4);
     }
 
+    /* ── Itinerary ── */
+    .itin-day {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 1.4rem;
+      overflow: hidden;
+      transition: box-shadow var(--transition);
+    }
+    .itin-day:hover { box-shadow: var(--shadow-hover); }
+    .itin-day-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1.4rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      color: #fff;
+    }
+    .itin-day-header .day-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      min-width: 2.2rem;
+    }
+    .itin-day-header .day-info { flex: 1; }
+    .itin-day-header .day-date { font-size: .82rem; opacity: .85; }
+    .itin-day-header .day-title { font-size: 1rem; font-weight: 700; }
+    .itin-day-body { padding: 1rem 1.4rem; }
+    .itin-places { list-style: none; padding: 0; margin: 0; }
+    .itin-places li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .4rem 0;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .itin-places li:last-child { border-bottom: none; }
+    .itin-places li .place-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+    .itin-places li .place-name { font-weight: 500; }
+    .itin-places li .place-note { font-size: .8rem; color: var(--muted); margin-left: .3rem; }
+    .itin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .22rem .7rem;
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 600;
+      margin: .2rem .2rem .2rem 0;
+    }
+    .itin-badge.flight { background: #e8f4fd; color: #1a6fa8; border: 1px solid #a9d4f0; }
+    .itin-badge.hotel-in { background: #eaf7ea; color: #1e7e34; border: 1px solid #a3d9a5; }
+    .itin-badge.hotel-out { background: #fff3e0; color: #b45309; border: 1px solid #f6c87a; }
+    .itin-badges { margin-bottom: .6rem; }
+    .itin-empty { font-size: .88rem; color: var(--muted); font-style: italic; }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
@@ -425,6 +483,7 @@
   <button             onclick="showTab('food', event)"     role="tab">🍜 美食</button>
   <button             onclick="showTab('sights', event)"   role="tab">⛩ 景點</button>
   <button             onclick="showTab('map', event)"      role="tab">🗺 地圖</button>
+  <button             onclick="showTab('itinerary', event)" role="tab">📅 行程</button>
 </nav>
 
 <main>
@@ -1167,6 +1226,227 @@
       </ul>
     </div>
 
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════
+     TAB 6 : 行程
+══════════════════════════════════════ -->
+<section id="itinerary" class="tab-content">
+
+  <h2 class="section-title">逐日行程</h2>
+
+  <div class="card" style="margin-bottom:1.6rem;">
+    <h4>✈️ 航班總覽</h4>
+    <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; line-height:2.1;">
+      <li>🛫 <strong>去程 BR130</strong>　13:35 TPE → 17:15 KIX</li>
+      <li>🛬 <strong>回程 BR129</strong>　18:30 KIX → 20:30 TPE</li>
+    </ul>
+    <p style="margin-top:.6rem; font-size:.82rem; color:var(--muted);">1人 9/25 先發・10/4 返程　｜　其餘成員 9/26 出發・10/3 返程</p>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D1</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月25日（週五）</div>
+        <div class="day-title">出發日 — TPE → KIX</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge flight">✈️ BR130 13:35 TPE→KIX（先發 1人）</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">✈️</span><span class="place-name">桃園國際機場 出發</span><span class="place-note">13:35 起飛，17:15 抵達關西國際機場</span></li>
+        <li><span class="place-icon">🚆</span><span class="place-name">KIX → 伊勢市</span><span class="place-note">近鐵特急「しまかぜ」或「伊勢志摩ライナー」</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D2</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月26日（週六）</div>
+        <div class="day-title">全員抵達 — TPE → KIX</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge flight">✈️ BR130 13:35 TPE→KIX（其餘成員 3人）</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">✈️</span><span class="place-name">桃園國際機場 出發</span><span class="place-note">13:35 起飛，17:15 抵達關西國際機場</span></li>
+        <li><span class="place-icon">🚆</span><span class="place-name">KIX → 伊勢市</span><span class="place-note">近鐵特急「しまかぜ」或「伊勢志摩ライナー」</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D3</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月27日（週日）</div>
+        <div class="day-title">伊勢神宮周邊</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge hotel-in">🏨 CHECK IN — いにしえの宿 伊久</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">⛩</span><span class="place-name">豊受大神宮（伊勢神宮 外宮）</span></li>
+        <li><span class="place-icon">🍜</span><span class="place-name">ふくすけ</span><span class="place-note">おかげ横丁 伊勢うどん</span></li>
+        <li><span class="place-icon">🏘</span><span class="place-name">おかげ横丁</span><span class="place-note">食べ歩き・伴手禮</span></li>
+        <li><span class="place-icon">⛩</span><span class="place-name">皇大神宮（伊勢神宮 内宮）</span></li>
+        <li><span class="place-icon">🍡</span><span class="place-name">だんご屋</span><span class="place-note">おかげ横丁 甘味</span></li>
+        <li><span class="place-icon">☕</span><span class="place-name">五十鈴茶屋</span><span class="place-note">五十鈴川畔甜點・抹茶</span></li>
+        <li><span class="place-icon">⛩</span><span class="place-name">皇大神宮別宮 月讀宮</span></li>
+        <li><span class="place-icon">⛩</span><span class="place-name">倭姫宮</span></li>
+        <li><span class="place-icon">🍗</span><span class="place-name">焼鳥 にかわ</span><span class="place-note">19:00 入席・完全預約制・百名店</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D4</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月28日（週一）</div>
+        <div class="day-title">鳥羽 ＆ 二見浦</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <ul class="itin-places">
+        <li><span class="place-icon">🌄</span><span class="place-name">一宇田展望台</span><span class="place-note">伊勢方向眺望</span></li>
+        <li><span class="place-icon">⛩</span><span class="place-name">朝熊岳金剛證寺</span><span class="place-note">伊勢神宮鬼門守護寺</span></li>
+        <li><span class="place-icon">🌅</span><span class="place-name">朝熊山展望台</span><span class="place-note">伊勢志摩 e-POWER ROAD</span></li>
+        <li><span class="place-icon">🐬</span><span class="place-name">鳥羽水族館</span><span class="place-note">日本最大級，儒艮飼育唯一</span></li>
+        <li><span class="place-icon">🦪</span><span class="place-name">珍珠博物館（ミキモト真珠島）</span></li>
+        <li><span class="place-icon">🦞</span><span class="place-name">水沼さざえ店</span><span class="place-note">午餐・海鮮</span></li>
+        <li><span class="place-icon">⛩</span><span class="place-name">伊射波神社</span><span class="place-note">需開車前往</span></li>
+        <li><span class="place-icon">🌊</span><span class="place-name">二見興玉神社（夫婦岩）</span></li>
+        <li><span class="place-icon">🍡</span><span class="place-name">お福餅 甘味処</span><span class="place-note">二見浦名物</span></li>
+        <li><span class="place-icon">🥩</span><span class="place-name">和田金</span><span class="place-note">松阪牛すき焼き・明治11年創業・需預約</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D5</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月29日（週二）</div>
+        <div class="day-title">賢島行程</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge hotel-out">🏨 CHECK OUT — いにしえの宿 伊久</span>
+        <span class="itin-badge hotel-in">🏨 CHECK IN — 賢島寶生苑</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">🌊</span><span class="place-name">横山展望台</span><span class="place-note">英虞灣全景・攝影聖地</span></li>
+        <li><span class="place-icon">🍤</span><span class="place-name">天ぷら とばり</span><span class="place-note">在地天婦羅名店</span></li>
+        <li><span class="place-icon">🎡</span><span class="place-name">志摩スペイン村（パルケエスパーニャ）</span><span class="place-note">西班牙主題樂園</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D6</div>
+      <div class="day-info">
+        <div class="day-date">2026年9月30日（週三）</div>
+        <div class="day-title">西班牙村 ＆ 地中海村</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <ul class="itin-places">
+        <li><span class="place-icon">🐟</span><span class="place-name">炭火焼うなぎ 東山物産</span><span class="place-note">鰻魚百名店・備長炭關西風・鵜方駅3分</span></li>
+        <li><span class="place-icon">⛵</span><span class="place-name">志摩マリンレジャー あご湾定期船</span><span class="place-note">賢島港出發・英虞灣遊覽</span></li>
+        <li><span class="place-icon">🏖</span><span class="place-name">ヴィレッジ＆ホテル 志摩地中海村</span><span class="place-note">地中海風主題村落</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D7</div>
+      <div class="day-info">
+        <div class="day-date">2026年10月1日（週四）</div>
+        <div class="day-title">賢島自由日</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge hotel-out">🏨 CHECK OUT — 賢島寶生苑</span>
+      </div>
+      <p class="itin-empty">行程待規劃 — 可考慮：英虞灣遊覽船・的矢かきテラス・賢島Cafe</p>
+    </div>
+  </div>
+
+  <!-- Day 8 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D8</div>
+      <div class="day-info">
+        <div class="day-date">2026年10月2日（週五）</div>
+        <div class="day-title">自由行程</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <p class="itin-empty">行程待規劃 — 可考慮：松阪市周邊・鳥羽灣島嶼・海女小屋體驗</p>
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D9</div>
+      <div class="day-info">
+        <div class="day-date">2026年10月3日（週六）</div>
+        <div class="day-title">部分成員返程</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge flight">✈️ BR129 18:30 KIX→TPE（先回 2人）</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">🚆</span><span class="place-name">移動至關西國際機場</span></li>
+        <li><span class="place-icon">✈️</span><span class="place-name">BR129 18:30 KIX 起飛，20:30 抵達桃園</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="itin-day">
+    <div class="itin-day-header">
+      <div class="day-num">D10</div>
+      <div class="day-info">
+        <div class="day-date">2026年10月4日（週日）</div>
+        <div class="day-title">返程日</div>
+      </div>
+    </div>
+    <div class="itin-day-body">
+      <div class="itin-badges">
+        <span class="itin-badge flight">✈️ BR129 18:30 KIX→TPE（2人）</span>
+      </div>
+      <ul class="itin-places">
+        <li><span class="place-icon">🚆</span><span class="place-name">移動至關西國際機場</span></li>
+        <li><span class="place-icon">✈️</span><span class="place-name">BR129 18:30 KIX 起飛，20:30 抵達桃園</span></li>
+      </ul>
+    </div>
   </div>
 
 </section>
